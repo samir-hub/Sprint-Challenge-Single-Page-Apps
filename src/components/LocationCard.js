@@ -5,12 +5,14 @@ export default function LocationCard(props) {
   return (
     <Card>
       <Card.Content>
-        <Card.Header>{props.name}</Card.Header>
+        <h1>
+        <Card.Header>Name of Location: {props.name}</Card.Header>
+        </h1>
         <Card.Meta>
-          <span className='date'>Type: {props.type}</span>
+          <h1 className='date'>Type: {props.type}</h1>
         </Card.Meta>
         <Card.Description>
-        Dimension: {props.dimension}
+        <h1>Dimension: {props.dimension}</h1>
         </Card.Description>
       </Card.Content>
     </Card> 
