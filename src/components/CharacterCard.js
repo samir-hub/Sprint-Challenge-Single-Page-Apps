@@ -8,10 +8,10 @@ export default function CharacterCard(props) {
       <Card.Content>
         <Card.Header>{props.name}</Card.Header>
         <Card.Meta>
-          <span className='date'>{props.status}</span>
+          <span className='date'>Status: {props.status}</span>
         </Card.Meta>
         <Card.Description>
-        {props.species}
+        Kind: {props.species}
         </Card.Description>
       </Card.Content>
     </Card>

@@ -7,10 +7,10 @@ export default function LocationCard(props) {
       <Card.Content>
         <Card.Header>{props.name}</Card.Header>
         <Card.Meta>
-          <span className='date'>{props.type}</span>
+          <span className='date'>Type: {props.type}</span>
         </Card.Meta>
         <Card.Description>
-        {props.dimension}
+        Dimension: {props.dimension}
         </Card.Description>
       </Card.Content>
     </Card> 
