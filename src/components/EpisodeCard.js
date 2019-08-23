@@ -1,20 +1,18 @@
 import React from "react";
 import { Card, Icon, Image } from 'semantic-ui-react'
 
-export default function CharacterCard(props) {
-  return ( 
-      <Card>
-      <Image src={props.image} wrapped ui={false} />
+export default function EpisodeCard(props) {
+  return (
+    <Card>
       <Card.Content>
         <Card.Header>{props.name}</Card.Header>
         <Card.Meta>
-          <span className='date'>{props.status}</span>
+          <span className='date'>{props.air_date}</span>
         </Card.Meta>
         <Card.Description>
-        {props.species}
+        {props.episode}
         </Card.Description>
       </Card.Content>
-    </Card>
+    </Card>  
       );
 }
-
