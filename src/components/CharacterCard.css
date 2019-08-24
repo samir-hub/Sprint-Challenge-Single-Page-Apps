@@ -1,0 +1,10 @@
+
+
+div {
+    display: flex; 
+    flex-wrap: wrap; 
+}
+
+.header {
+    margin-right: 2%;
+}
