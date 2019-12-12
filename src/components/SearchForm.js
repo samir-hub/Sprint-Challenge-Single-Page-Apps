@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function SearchForm({ onSearch }) {
-  // STRETCH TODO: Add stateful logic for query/form data
+export default function SearchForm(props) {
+  const setSearchResults = props.setDataToDisplay;
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [dataToSearch] = useState(props.data);
+
+  const handleChange = event => setSearchTerm(event.target.value);
+
+  useEffect(() => {
+    const results = dataToSearch.filter(character =>
+      character.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+  }, [searchTerm, setSearchResults, dataToSearch]);
+
   return (
-    <section className="search-form">
-      <form onSubmit={() => onSearch(name)}>
-        <input
-          onChange={handleInputChange}
-          placeholder="name"
-          value={name}
-          name="name"
-        />
-        <button type="submit">Search</button>
-      </form>
-    </section>
+    <form className="search-form">
+      <input placeholder="Search" value={searchTerm} onChange={handleChange} />
+    </form>
   );
 }
