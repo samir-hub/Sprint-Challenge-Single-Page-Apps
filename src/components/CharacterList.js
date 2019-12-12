@@ -1,34 +1,41 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CharacterCard from "./CharacterCard";
+import SearchForm from "./SearchForm";
 
-export default function CharacterList() {
-  // TODO: Add useState to track data from useEffect
-  const [data, setData] = useState([]);
-
-  let api = `https://rickandmortyapi.com/api/character/`
+export default function CharacterList(props) {
+  const [characterList, setCharacterList] = useState();
+  const [dataToDisplay, setDataToDisplay] = useState();
 
   useEffect(() => {
-    // TODO: Add API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
     axios
-    .get(api)
-    .then(response => {
-      console.log(response.data.results);
-      setData(response.data.results);
-    })
-  }, []);
+      .get(`https://rickandmortyapi.com/api/character/`, {})
+      .then(res => {
+        setCharacterList(res.data.results);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, [props.history]);
+
+  useEffect(() => {
+    characterList && setDataToDisplay(characterList);
+  }, [characterList]);
+
+  if (!dataToDisplay) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <section className="character-list grid-view">
-      <div className='main-div'>
-    {
-      data.map((ele)=>{
-        return <CharacterCard name = {ele.name} status = {ele.status} species = {ele.species} image = {ele.image} />
-
-      })
-    }
-    </div>
-    </section>
+    <>
+      <section className="character-list grid-view"></section>
+      <SearchForm data={characterList} setDataToDisplay={setDataToDisplay} />
+      <div className="main-div">
+        {dataToDisplay.map(character => (
+          <CharacterCard {...character} key={character.id} />
+        ))}
+      </div>
+      <section />
+    </>
   );
 }
